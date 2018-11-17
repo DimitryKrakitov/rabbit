@@ -1,0 +1,66 @@
+<p>
+  <strong><%= @post.title %></strong>
+
+  By:
+  <strong><%= @post.user.username %></strong>
+</p>
+
+<p>
+  <%= @post.body %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+
+  <%= @post.comments.count %>
+
+
+<%= form_for :upvote_form, url: upvote_posts_path, method: :put do |form| %>
+
+  <%= form.hidden_field :post_id, value: @post.id %>
+
+  <%= form.submit "Upvote"%>
+ 
+<% end %>
+
+  <%= @post.upvote %>
+
+<%= form_for :downvote_form, url: downvote_posts_path, method: :put do |form| %>
+
+  <%= form.hidden_field :post_id, value: @post.id %>
+
+  <%= form.submit "Downvote"%>
+ 
+<% end %>
+
+  <%= @post.downvote %>
+</p>
+
+<h1>Comments:</h1>
+
+<p>
+<% @post.comments.each do |comment| %>
+  <strong><%= comment.body %></strong></br>
+  By: <%= comment.user.username %> </br>
+
+<% end %>
+
+<%= link_to 'Back', posts_path %>
+
+</p>
+
+<h1>Add a Comment</h1>
+
+<%= form_for :comment_form, url: comment_posts_path, method: :post do |form| %>
+
+  <%= form.hidden_field :post_id, value: @post.id %>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+
+
+  <%= form.submit "Upload Comment"%>
+ 
+<% end %>

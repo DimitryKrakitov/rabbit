@@ -1,0 +1,28 @@
+<h1>Posts</h1> 
+
+<strong><%= link_to 'Users', users_path %></strong>
+<%= link_to 'New Post', new_posts_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Post title</th>
+      <th>Posted by</th>
+      <th>Upvotes</th>
+      <th>Downvotes</th>
+      <th>Nr of Comments</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even')%>">
+        <td><strong><%= link_to post.title, show_posts_path(post.id) %></strong></td>
+        <td><%= post.user.username %></td>
+        <td><%= post.upvote %></td>
+        <td><%= post.downvote %></td>
+        <td><%= post.comments.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,23 @@
+<h1>Users</h1> 
+
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Nr of Posts </th>
+      <th>Nr of Comments</th>
+      <th>Nr of upvotes</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @Users.each do |user| %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even')%>">
+        <td><strong><%= link_to user.username, show_user_path(user.id) %></strong></td>
+        <td><%= user.posts.count %></td>
+        <td><%= user.comments.count %></td>
+        <td><%= user.upvotes %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

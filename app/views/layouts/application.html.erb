@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Rabbit</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+
+
+    <header> 
+
+      <%= link_to image_tag("rabbit_logo.jpg", alt: "Touka Rabbit Kirishima", :size => "120x120"), unauthenticated_root_path, {:class => 'weblogo'} %>
+
+      <%= link_to 'RABBIT', unauthenticated_root_path, {:class => 'webtitle'} %>
+
+    <!-- FAZER CONDIÇÃO NESTES LINKS PARA O CONTROLLER/PAGES SER UMA COISA SE SE ESTÁ LOGGED IN E OUTRA SE NÃO SE ESTÁ: SE ESTIVER LOGGED-IN MANDAR PARA PAGINA DOS ARTIGOS-->
+
+    </header>
+
+    <% if user_signed_in? %>
+      <%= link_to "Sign_out", destroy_user_session_path, method: :delete %>
+    <% end %>
+
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+     <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>
